@@ -51,3 +51,8 @@ For another customisations copy file with configuration to `/opt/hadoop/etc/hado
 helm install --name metastore stable/mysql --set mysqlUser=hive --set mysqlDatabase=metastore --set mysqlPassword=password
 ```
 
+Add your AWS Access Key and Secret Key in the file: `kubernetes/config-map.yaml`
+
+```bash
+kubectl apply -f kubernetes/
+```

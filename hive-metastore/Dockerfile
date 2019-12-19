@@ -13,12 +13,12 @@ RUN yum update -y && \
     which
 
 RUN cd /opt && \
-  wget http://apache.claz.org/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && \
+  wget https://archive.apache.org/dist/hadoop/core/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && \
   tar xzf hadoop-$HADOOP_VERSION.tar.gz && \
   mv hadoop-$HADOOP_VERSION hadoop
 
 RUN cd /opt && \
-  wget http://artfiles.org/apache.org/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERSION-bin.tar.gz && \
+  wget https://archive.apache.org/dist/hive/hive-$HIVE_VERSION/apache-hive-${HIVE_VERSION}-bin.tar.gz && \
   tar xzf apache-hive-$HIVE_VERSION-bin.tar.gz && \
   mv apache-hive-$HIVE_VERSION-bin hive
 
