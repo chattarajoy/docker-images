@@ -19,14 +19,15 @@ RUN cd /opt && \
 
 RUN cd /opt && \
   wget https://archive.apache.org/dist/hive/hive-$HIVE_VERSION/apache-hive-${HIVE_VERSION}-bin.tar.gz && \
-  tar xzf apache-hive-$HIVE_VERSION-bin.tar.gz && \
-  mv apache-hive-$HIVE_VERSION-bin hive
+  tar xzf apache-hive-${HIVE_VERSION}-bin.tar.gz && \
+  mv apache-hive-${HIVE_VERSION}-bin hive
 
 RUN wget $MYSQL_JDBC -P /opt/hive/lib/
 
 COPY conf/mapred-site.xml /opt/hadoop/etc/hadoop/mapred-site.xml
 COPY conf/hive-site.xml.tpl /opt/hadoop/etc/hadoop/hive-site.xml.tpl
 COPY entrypoint.sh /opt/entrypoint.sh
+RUN chmod +x /opt/entrypoint.sh
 COPY conf/hive-log4j2.properties /opt/hive/conf/hive-log4j2.properties
 
 ENV HADOOP_USER_CLASSPATH_FIRST true
