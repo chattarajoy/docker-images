@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hive-metastore-config
+  labels:
+    app: hive-metastore
+data:
+  CONNECTION_URI: jdbc:mysql://metastore-mysql:3306/metastore
+  CONNECTION_USER: hive
+  CONNECTION_PASSWORD: password
+  CONNECTION_DRIVER: "com.mysql.jdbc.Driver"
+  AWS_ACCESS_KEY_ID: <ACCESS KEY ID>
+  AWS_SECRET_ACCESS_KEY: <SECRET ACCESS KEY>
