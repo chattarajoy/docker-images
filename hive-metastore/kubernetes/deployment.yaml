@@ -17,7 +17,7 @@ spec:
       containers:
         - name: hive-metastore
           image: quay.io/chattarajoy/hive-metastore:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           resources:
             limits:
               cpu: 0.8
