@@ -5,7 +5,7 @@ metadata:
   labels:
     app: hive-metastore
 data:
-  DB_TPYE: "mysql"
+  DB_TYPE: "mysql"
   CONNECTION_URI: jdbc:mysql://metastore-mysql:3306/metastore
   CONNECTION_USER: hive
   CONNECTION_PASSWORD: password
