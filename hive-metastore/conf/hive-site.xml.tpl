@@ -68,4 +68,8 @@
     <name>fs.s3n.impl</name>
     <value>org.apache.hadoop.fs.s3native.NativeS3FileSystem</value>
   </property>
+  <property>
+    <name>hive.metastore.warehouse.dir</name>
+    <value>${HIVE_WAREHOUSE_DIR}</value>
+  </property>
 </configuration>

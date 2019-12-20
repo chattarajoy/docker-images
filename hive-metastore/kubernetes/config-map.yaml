@@ -10,5 +10,6 @@ data:
   CONNECTION_USER: hive
   CONNECTION_PASSWORD: password
   CONNECTION_DRIVER: "com.mysql.jdbc.Driver"
-  AWS_ACCESS_KEY_ID: <ACCESS KEY ID>
-  AWS_SECRET_ACCESS_KEY: <SECRET ACCESS KEY>
+  HIVE_WAREHOUSE_DIR: "hdfs://hadoop-hadoop-hdfs-nn.hadoop.svc.cluster.local"
+  AWS_ACCESS_KEY_ID:
+  AWS_SECRET_ACCESS_KEY:
