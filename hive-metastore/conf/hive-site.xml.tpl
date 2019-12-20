@@ -1,6 +1,14 @@
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
   <property>
+    <name>fs.s3.awsAccessKeyId</name>
+    <value>${AWS_ACCESS_KEY_ID}</value>
+  </property>
+  <property>
+    <name>fs.s3.awsSecretAccessKey</name>
+    <value>${AWS_SECRET_ACCESS_KEY}</value>
+  </property>
+  <property>
     <name>fs.s3n.awsAccessKeyId</name>
     <value>${AWS_ACCESS_KEY_ID}</value>
   </property>
@@ -8,14 +16,14 @@
     <name>fs.s3n.awsSecretAccessKey</name>
     <value>${AWS_SECRET_ACCESS_KEY}</value>
   </property>
-    <property>
-      <name>fs.s3a.awsAccessKeyId</name>
-      <value>${AWS_ACCESS_KEY_ID}</value>
-    </property>
-    <property>
-      <name>fs.s3a.awsSecretAccessKey</name>
-      <value>${AWS_SECRET_ACCESS_KEY}</value>
-    </property>
+  <property>
+    <name>fs.s3a.awsAccessKeyId</name>
+    <value>${AWS_ACCESS_KEY_ID}</value>
+  </property>
+  <property>
+    <name>fs.s3a.awsSecretAccessKey</name>
+    <value>${AWS_SECRET_ACCESS_KEY}</value>
+  </property>
   <property>
     <name>mapred.input.dir.recursive</name>
     <value>true</value>
