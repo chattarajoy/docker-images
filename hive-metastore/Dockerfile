@@ -2,7 +2,8 @@ FROM centos:latest
 
 ENV HADOOP_VERSION 2.7.1
 ENV HIVE_VERSION 2.1.1
-ENV MYSQL_JDBC=http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.35/mysql-connector-java-5.1.35.jar
+ENV MYSQL_JDBC=https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.18/mysql-connector-java-8.0.18.jar
+ENV POSTGRES_JDBC=https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.9/postgresql-42.2.9.jar
 
 RUN yum update -y && \
   yum -y install \
@@ -23,6 +24,7 @@ RUN cd /opt && \
   mv apache-hive-${HIVE_VERSION}-bin hive
 
 RUN wget $MYSQL_JDBC -P /opt/hive/lib/
+RUN wget $POSTGRES_JDBC -P /opt/hive/lib/
 
 COPY conf/mapred-site.xml /opt/hadoop/etc/hadoop/mapred-site.xml
 COPY conf/hive-site.xml.tpl /opt/hadoop/etc/hadoop/hive-site.xml.tpl

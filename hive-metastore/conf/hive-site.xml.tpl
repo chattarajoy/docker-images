@@ -17,11 +17,11 @@
     <value>${AWS_SECRET_ACCESS_KEY}</value>
   </property>
   <property>
-    <name>fs.s3a.awsAccessKeyId</name>
+    <name>fs.s3a.access.key</name>
     <value>${AWS_ACCESS_KEY_ID}</value>
   </property>
   <property>
-    <name>fs.s3a.awsSecretAccessKey</name>
+    <name>fs.s3a.secret.key</name>
     <value>${AWS_SECRET_ACCESS_KEY}</value>
   </property>
   <property>
@@ -67,6 +67,10 @@
   <property>
     <name>fs.s3n.impl</name>
     <value>org.apache.hadoop.fs.s3native.NativeS3FileSystem</value>
+  </property>
+  <property>
+    <name>fs.s3a.impl</name>
+    <value>org.apache.hadoop.fs.s3a.S3AFileSystem</value>
   </property>
   <property>
     <name>hive.metastore.warehouse.dir</name>
