@@ -46,9 +46,24 @@ RUN conda install --quiet --yes 'spylon-kernel=0.4*' && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
 
+
+
 # Install spark-magic
-RUN pip install sparkmonitor && \
-    jupyter nbextension install sparkmonitor --py --user --symlink && \
-    jupyter nbextension enable sparkmonitor --py --user && \
-    jupyter serverextension enable --py --user sparkmonitor && \
-    ipython profile create && echo "c.InteractiveShellApp.extensions.append('sparkmonitor.kernelextension')" >>  $(ipython profile locate default)/ipython_kernel_config.py
+# RUN pip install sparkmonitor
+RUN jupyter nbextension install sparkmonitor --py --user --symlink
+RUN jupyter nbextension enable sparkmonitor --py --user
+RUN pip uninstall -y tornado && pip uninstall -y nbconvert
+RUN pip install tornado==5.1.1 && pip install nbconvert==5.6.1
+RUN jupyter serverextension enable --py --user sparkmonitor
+RUN ipython profile create && echo "c.InteractiveShellApp.extensions.append('sparkmonitor.kernelextension')" >>  $(ipython profile locate default)/ipython_kernel_config.py
+
+
+
+
+
+# spark-monitor different installation:
+# RUN pip install jupyter-spark
+# RUN jupyter serverextension enable --py jupyter_spark
+# RUN jupyter nbextension install --py jupyter_spark
+# RUN jupyter nbextension enable --py jupyter_spark --user sparkmonitor
+# RUN jupyter nbextension enable --py widgetsnbextension --user sparkmonitor
