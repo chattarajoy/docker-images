@@ -163,6 +163,5 @@ RUN set -ex; \
 # Clean
 RUN rm -rf ~/.cache/pip
 
-RUN ln -s /root/.pyenv/versions/3.7.0/bin/python3.7 /usr/bin/python
 RUN ln -s /usr/bin/pip3 /usr/bin/pip
 RUN pip install pyspark
