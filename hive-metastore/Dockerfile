@@ -25,6 +25,7 @@ RUN cd /opt && \
 
 RUN wget $MYSQL_JDBC -P /opt/hive/lib/
 RUN wget $POSTGRES_JDBC -P /opt/hive/lib/
+RUN wget https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/2.9.2/hadoop-aws-2.9.2.jar /opt/hive/lib/
 
 COPY conf/mapred-site.xml /opt/hadoop/etc/hadoop/mapred-site.xml
 COPY conf/hive-site.xml.tpl /opt/hadoop/etc/hadoop/hive-site.xml.tpl
