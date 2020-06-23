@@ -1,6 +1,6 @@
 FROM centos:latest
 
-ENV HADOOP_VERSION 2.7.1
+ENV HADOOP_VERSION 2.9.1
 ENV HIVE_VERSION 2.1.1
 ENV MYSQL_JDBC=https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.18/mysql-connector-java-8.0.18.jar
 ENV POSTGRES_JDBC=https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.9/postgresql-42.2.9.jar
