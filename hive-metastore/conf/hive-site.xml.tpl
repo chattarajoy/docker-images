@@ -29,6 +29,14 @@
     <value>http://minio-service.default:9000</value>
   </property>
   <property>
+    <name>fs.s3a.path.style.access</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>fs.s3a.committer.magic.enabled</name>
+    <value>false</value>
+  </property>
+  <property>
     <name>mapred.input.dir.recursive</name>
     <value>true</value>
   </property>
