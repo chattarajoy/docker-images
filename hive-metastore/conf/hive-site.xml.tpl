@@ -25,6 +25,10 @@
     <value>${AWS_SECRET_ACCESS_KEY}</value>
   </property>
   <property>
+    <name>fs.s3a.endpoint</name>
+    <value>http://minio-service.default:9000</value>
+  </property>
+  <property>
     <name>mapred.input.dir.recursive</name>
     <value>true</value>
   </property>
