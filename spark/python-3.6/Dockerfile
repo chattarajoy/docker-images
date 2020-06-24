@@ -1,4 +1,4 @@
-FROM gcr.io/hybrid-qubole/spark
+FROM gcr.io/hybrid-qubole/spark:minio
 
 ENV PATH /usr/local/bin:$PATH
 
