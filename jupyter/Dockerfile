@@ -7,6 +7,10 @@ USER root
 ENV R_LIBS_USER $SPARK_HOME/R/lib
 RUN fix-permissions $R_LIBS_USER
 
+# update aws JAR
+RUN cd $SPARK_HOME/jars && \
+ wget https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/2.9.2/hadoop-aws-2.9.2.jar
+
 # R pre-requisites
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
