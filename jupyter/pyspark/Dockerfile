@@ -20,9 +20,6 @@ RUN apt-get -y update && \
 WORKDIR /tmp
 # download hadoop
 
-# With explicit path to 'hadoop' binary
-ENV SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath)
-
 RUN cd /tmp && wget https://mirrors.estointernet.in/apache/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz &&
     tar xzf hadoop-${HADOOP_VERSION}.tar.gz -C /usr/local --owner root --group root --no-same-owner && \
     rm hadoop-${HADOOP_VERSION}.tar.gz
@@ -43,6 +40,9 @@ ENV SPARK_HOME=/usr/local/spark
 ENV PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip \
     SPARK_OPTS="--driver-java-options=-Xms1024M --driver-java-options=-Xmx4096M --driver-java-options=-Dlog4j.logLevel=info" \
     PATH=$PATH:$SPARK_HOME/bin
+    
+# With explicit path to 'hadoop' binary
+ENV SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath)
 
 USER $NB_UID
 
