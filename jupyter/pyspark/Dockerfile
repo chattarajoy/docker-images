@@ -20,7 +20,7 @@ RUN apt-get -y update && \
 WORKDIR /tmp
 # download hadoop
 
-RUN cd /tmp && wget https://mirrors.estointernet.in/apache/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz &&
+RUN cd /tmp && wget https://mirrors.estointernet.in/apache/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz && \
     tar xzf hadoop-${HADOOP_VERSION}.tar.gz -C /usr/local --owner root --group root --no-same-owner && \
     rm hadoop-${HADOOP_VERSION}.tar.gz
 
