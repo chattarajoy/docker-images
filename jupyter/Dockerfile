@@ -1,4 +1,4 @@
-ARG BASE_CONTAINER=jupyter/pyspark-notebook:7a0c7325e470
+ARG BASE_CONTAINER=gcr.io/hybrid-qubole/jupyter-pyspark:minio
 FROM $BASE_CONTAINER
 
 USER root
