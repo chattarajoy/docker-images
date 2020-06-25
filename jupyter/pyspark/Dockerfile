@@ -42,7 +42,8 @@ ENV PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip \
     PATH=$PATH:$SPARK_HOME/bin
     
 # With explicit path to 'hadoop' binary
-ENV SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath)
+RUN export SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath)
+ENV SPARK_DIST_CLASSPATH=$SPARK_DIST_CLASSPATH
 
 USER $NB_UID
 
