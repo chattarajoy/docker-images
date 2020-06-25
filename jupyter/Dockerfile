@@ -1,6 +1,5 @@
 ARG BASE_CONTAINER=gcr.io/hybrid-qubole/jupyter-pyspark:minio
 FROM $BASE_CONTAINER
-
 USER root
 
 # RSpark config
