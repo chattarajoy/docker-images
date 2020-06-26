@@ -48,8 +48,7 @@ ENV SPARK_DIST_CLASSPATH=$SPARK_DIST_CLASSPATH
 USER $NB_UID
 
 # Install pyarrow
-RUN conda install --quiet -y 'pyarrow' && \
-    conda clean --all -f -y && \
+RUN conda clean --all -f -y && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
