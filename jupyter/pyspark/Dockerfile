@@ -40,10 +40,11 @@ ENV SPARK_HOME=/usr/local/spark
 ENV PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip \
     SPARK_OPTS="--driver-java-options=-Xms1024M --driver-java-options=-Xmx4096M --driver-java-options=-Dlog4j.logLevel=info" \
     PATH=$PATH:$SPARK_HOME/bin
+    PYSPARK_SUBMIT_ARGS="--master local[2] pyspark-shell"
     
 # With explicit path to 'hadoop' binary
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 RUN export SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath)
-ENV SPARK_DIST_CLASSPATH=$SPARK_DIST_CLASSPATH
 
 USER $NB_UID
 
