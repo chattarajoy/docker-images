@@ -15,7 +15,7 @@ RUN apt-get -y install build-essential libssl-dev openssl libreadline-gplv2-dev 
 	cd Python-${PYTHON_VERSION} &&\
 	./configure && \
 	make && \
-	make instal
+	make install
 
 RUN cd /usr/local/bin \
 	&& ln -s idle3 idle \
