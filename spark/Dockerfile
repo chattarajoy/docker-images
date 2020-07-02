@@ -1,7 +1,7 @@
 FROM gcr.io/spark-operator/spark:v2.4.5-gcs-prometheus
 
- RUN   apt-get update \                                                                                                                                                                                                                        
-  &&   apt-get install ca-certificates wget \                                                                                                                                                                                                      
+ RUN   apt-get -y update \                                                                                                                                                                                                                        
+  &&   apt-get -y install ca-certificates wget \                                                                                                                                                                                                      
   &&   update-ca-certificates  
   
 RUN mkdir -p /tmp && \
