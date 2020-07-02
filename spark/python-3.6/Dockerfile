@@ -25,4 +25,4 @@ RUN cd /usr/local/bin \
 	&& ln -s pydoc3 pydoc \
 	&& ln -s python3 python \
 	&& ln -s python3-config python-config
-RUN pip install pyspark
+RUN pip install pyspark==2.4.5
