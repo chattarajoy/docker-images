@@ -20,4 +20,9 @@ RUN apt-get -y install build-essential libssl-dev openssl libreadline-gplv2-dev 
 
 
 RUN ln -s /usr/bin/pip3 /usr/bin/pip
+RUN cd /usr/local/bin \
+	&& ln -s idle3 idle \
+	&& ln -s pydoc3 pydoc \
+	&& ln -s python3 python \
+	&& ln -s python3-config python-config
 RUN pip install pyspark
