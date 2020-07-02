@@ -15,14 +15,16 @@ RUN apt-get -y install build-essential libssl-dev openssl libreadline-gplv2-dev 
 	cd Python-${PYTHON_VERSION} &&\
 	./configure && \
 	make && \
-	make install && \
-	apt-get install -y python3-pip
+	make instal
 
-
-RUN ln -s /usr/bin/pip3 /usr/bin/pip
 RUN cd /usr/local/bin \
 	&& ln -s idle3 idle \
 	&& ln -s pydoc3 pydoc \
 	&& ln -s python3 python \
 	&& ln -s python3-config python-config
+	
+RUN wget curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+	python get-pip.py
+
+RUN ln -s /usr/bin/pip3 /usr/bin/pip
 RUN pip install pyspark==2.4.5
