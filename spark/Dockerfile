@@ -1,4 +1,4 @@
-FROM gcr.io/spark-operator/spark:v2.4.5-gcs-prometheus
+FROM mesosphere/spark:2.10.0-2.4.5-scala-2.11-hadoop-2.9
 
  RUN   apt-get -y update \                                                                                                                                                                                                                        
   &&   apt-get -y install ca-certificates wget \                                                                                                                                                                                                      
