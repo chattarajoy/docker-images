@@ -9,7 +9,7 @@ ENV LANG C.UTF-8
 ENV PYTHON_VERSION 3.6.7
 
 RUN apt-get -y install build-essential libssl-dev openssl libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev && \ 
-	cd /tmp
+	cd /tmp && \
 	wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz && \
 	tar xzvf Python-${PYTHON_VERSION}.tgz && \
 	cd Python-${PYTHON_VERSION} &&\
