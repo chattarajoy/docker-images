@@ -23,7 +23,7 @@ RUN cd /usr/local/bin \
 	&& ln -s python3 python \
 	&& ln -s python3-config python-config
 	
-RUN wget curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
 	python get-pip.py
 
 RUN ln -s /usr/bin/pip3 /usr/bin/pip
