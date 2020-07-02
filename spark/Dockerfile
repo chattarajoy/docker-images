@@ -1,5 +1,9 @@
 FROM gcr.io/spark-operator/spark:v2.4.5-gcs-prometheus
 
+ RUN   apk update \                                                                                                                                                                                                                        
+  &&   apk add ca-certificates wget \                                                                                                                                                                                                      
+  &&   update-ca-certificates  
+  
 RUN mkdir -p /tmp && \
  cd /tmp && \
  wget https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/2.9.2/hadoop-aws-2.9.2.jar && \
