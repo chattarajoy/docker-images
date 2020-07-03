@@ -15,21 +15,27 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN set -ex && \
-    sed -i 's/http:\/\/deb.\(.*\)/https:\/\/deb.\1/g' /etc/apt/sources.list && \
-    apt-get update && \
-    apt install -y bash tini libc6 libpam-modules krb5-user libnss3 procps && \
-    rm /bin/sh && \
-    ln -sv /bin/bash /bin/sh && \
-    rm -rf /var/cache/apt/*
-
 RUN apt-get update \
- && apt-get install -y curl unzip wget \
+ && apt-get install -y curl unzip wget bash libc6 libpam-modules krb5-user libnss3 procps gpg \
     python3 python3-setuptools \
  && ln -s /usr/bin/python3 /usr/bin/python \
  && easy_install3 pip py4j \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
+
+# install tini
+ENV TINI_VERSION v0.18.0
+ENV TINI_SIGN_KEY 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7
+RUN set -eux; \
+  wget -O /usr/local/bin/tini "https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini"; \
+  wget -O /usr/local/bin/tini.asc "https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini.asc"; \
+  export GNUPGHOME="$(mktemp -d)"; \
+  gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$TINI_SIGN_KEY"; \
+  gpg --batch --verify /usr/local/bin/tini.asc /usr/local/bin/tini; \
+  command -v gpgconf && gpgconf --kill all || :; \
+  rm -r "$GNUPGHOME" /usr/local/bin/tini.asc; \
+  chmod +x /usr/local/bin/tini; \
+  tini --version
 
 # http://blog.stuart.axelbrooke.com/python-3-on-spark-return-of-the-pythonhashseed
 ENV PYTHONHASHSEED 0
