@@ -19,6 +19,8 @@
 # echo commands to the terminal output
 set -ex
 
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:/bin/java::")
+
 # Check whether there is a passwd entry for the container UID
 myuid=$(id -u)
 mygid=$(id -g)
