@@ -15,8 +15,16 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
+RUN set -ex && \
+    sed -i 's/http:\/\/deb.\(.*\)/https:\/\/deb.\1/g' /etc/apt/sources.list && \
+    apt-get update && \
+    apt install -y bash tini libc6 libpam-modules krb5-user libnss3 procps && \
+    rm /bin/sh && \
+    ln -sv /bin/bash /bin/sh && \
+    rm -rf /var/cache/apt/*
+
 RUN apt-get update \
- && apt-get install -y curl unzip wget bash tini libc6 libpam-modules krb5-user libnss3 procps \
+ && apt-get install -y curl unzip wget \
     python3 python3-setuptools \
  && ln -s /usr/bin/python3 /usr/bin/python \
  && easy_install3 pip py4j \
