@@ -87,15 +87,15 @@ RUN rm -rf $SPARK_HOME/jars/kubernetes-client-*.jar
 ADD https://repo1.maven.org/maven2/io/fabric8/kubernetes-client/4.4.2/kubernetes-client-4.4.2.jar $SPARK_HOME/jars
 
 RUN mv /tmp/*.jar $SPARK_HOME/jars
-COPY entrypoint.sh $SPARK_HOME/
-COPY decom.sh $SPARK_HOME/
+
+COPY entrypoint.sh /opt/
+COPY decom.sh /opt/
 
 WORKDIR $SPARK_HOME
 
-RUN chmod g+w $SPARK_HOME
-RUN chmod a+x $SPARK_HOME/decom.sh
-RUN chmod a+x $SPARK_HOME/entrypoint.sh
+RUN chmod a+x /opt/decom.sh
+RUN chmod a+x /opt/entrypoint.sh
 
-ENTRYPOINT [ "$SPARK_HOME/entrypoint.sh" ]
+ENTRYPOINT [ "/opt/entrypoint.sh" ]
 
 
