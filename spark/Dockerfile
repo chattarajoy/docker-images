@@ -16,7 +16,7 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 RUN apt-get update \
- && apt-get install -y curl unzip wget \
+ && apt-get install -y curl unzip wget bash tini libc6 libpam-modules krb5-user libnss3 procps \
     python3 python3-setuptools \
  && ln -s /usr/bin/python3 /usr/bin/python \
  && easy_install3 pip py4j \
@@ -59,6 +59,7 @@ RUN curl -sL --retry 3 \
  && mv /usr/$SPARK_PACKAGE $SPARK_HOME \
  && chown -R root:root $SPARK_HOME
 
+# aws jars
 RUN mkdir -p /tmp && \
  cd /tmp && \
  wget https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/2.9.2/hadoop-aws-2.9.2.jar && \
@@ -66,11 +67,28 @@ RUN mkdir -p /tmp && \
  wget https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar && \
  wget https://repo1.maven.org/maven2/org/apache/spark/spark-hive_2.12/2.4.5/spark-hive_2.12-2.4.5.jar
 
+# spark-hive jars
+RUN cd /tmp && \
+ wget https://repo1.maven.org/maven2/org/apache/spark/spark-hive_2.11/2.4.5/spark-hive_2.11-2.4.5.jar && \
+ wget https://repo1.maven.org/maven2/org/spark-project/hive/hive-metastore/1.2.1.spark2/hive-metastore-1.2.1.spark2.jar && \
+ wget https://repo1.maven.org/maven2/org/spark-project/hive/hive-exec/1.2.1.spark2/hive-exec-1.2.1.spark2.jar && \
+ wget https://repo1.maven.org/maven2/org/apache/thrift/libfb303/0.9.3/libfb303-0.9.3.jar && \
+ wget https://repo1.maven.org/maven2/org/apache/thrift/libthrift/0.9.3/libthrift-0.9.3.jar
+
+
 RUN rm -rf $SPARK_HOME/jars/kubernetes-client-*.jar
 ADD https://repo1.maven.org/maven2/io/fabric8/kubernetes-client/4.4.2/kubernetes-client-4.4.2.jar $SPARK_HOME/jars
 
 RUN mv /tmp/*.jar $SPARK_HOME/jars
+COPY entrypoint.sh $SPARK_HOME/
+COPY decom.sh $SPARK_HOME/
 
 WORKDIR $SPARK_HOME
-CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
+
+RUN chmod g+w $SPARK_HOME
+RUN chmod a+x $SPARK_HOME/decom.sh
+RUN chmod a+x $SPARK_HOME/entrypoint.sh
+
+ENTRYPOINT [ "$SPARK_HOME/entrypoint.sh" ]
+
 
