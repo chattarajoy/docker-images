@@ -10,6 +10,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     id: JupyterPySpark
     timeout: 1200s
+    waitFor: ['-']
     args:
       - build
       - -t
@@ -27,7 +28,7 @@ steps:
       - -t
       - gcr.io/hybrid-qubole/jupyter-pyspark:$BRANCH_NAME
       - jupyter/
-timeout: 3000s
+timeout: 2400s
 tags:
   - $BRANCH_NAME
   - $COMMIT_SHA
