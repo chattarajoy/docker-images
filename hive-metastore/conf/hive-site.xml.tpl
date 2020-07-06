@@ -26,7 +26,7 @@
   </property>
   <property>
     <name>fs.s3a.endpoint</name>
-    <value>http://minio-service.default:9000</value>
+    <value>${AWS_S3_ENDPOINT}</value>
   </property>
   <property>
     <name>fs.s3a.path.style.access</name>
