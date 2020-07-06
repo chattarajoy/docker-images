@@ -3,10 +3,10 @@ steps:
     id: HiveMetastore
     timeout: 600s
     args:
-    - build
-    - -t
-    - gcr.io/hybrid-qubole/hive-metastore:$BRANCH_NAME
-    - hive-metastore/
+      - build
+      - -t
+      - gcr.io/hybrid-qubole/hive-metastore:latest
+      - hive-metastore/
   - name: 'gcr.io/cloud-builders/docker'
     id: JupyterPySpark
     timeout: 1200s
@@ -14,7 +14,7 @@ steps:
     args:
       - build
       - -t
-      - gcr.io/hybrid-qubole/jupyter-pyspark:$BRANCH_NAME
+      - gcr.io/hybrid-qubole/jupyter-pyspark:latest
       - jupyter/pyspark/
   - name: 'gcr.io/cloud-builders/docker'
     id: Jupyter
@@ -24,9 +24,9 @@ steps:
     args:
       - build
       - --build-arg
-      - BASE_CONTAINER=gcr.io/hybrid-qubole/jupyter-pyspark:$BRANCH_NAME
+      - BASE_CONTAINER=gcr.io/hybrid-qubole/jupyter-pyspark:latest
       - -t
-      - gcr.io/hybrid-qubole/jupyter:$BRANCH_NAME
+      - gcr.io/hybrid-qubole/jupyter:latest
       - jupyter/
   - name: 'gcr.io/cloud-builders/docker'
     id: Spark
@@ -35,7 +35,7 @@ steps:
     args:
       - build
       - -t
-      - gcr.io/hybrid-qubole/spark:$BRANCH_NAME
+      - gcr.io/hybrid-qubole/spark:latest
       - spark/
   - name: 'gcr.io/cloud-builders/docker'
     id: SparkPy36
@@ -45,15 +45,15 @@ steps:
     args:
       - build
       - --build-arg
-      - BASE_CONTAINER=gcr.io/hybrid-qubole/spark:$BRANCH_NAME
+      - BASE_CONTAINER=gcr.io/hybrid-qubole/spark:latest
       - -t
-      - gcr.io/hybrid-qubole/spark-python:3.6-$BRANCH_NAME
+      - gcr.io/hybrid-qubole/spark-python:3.6-latest
       - spark/python-3.6/
 timeout: 2400s
 tags:
-  - $BRANCH_NAME
+  - latest
   - $COMMIT_SHA
-  - 3.6-$BRANCH_NAME
+  - 3.6-latest
 images:
   - gcr.io/hybrid-qubole/hive-metastore
   - gcr.io/hybrid-qubole/jupyter-pyspark

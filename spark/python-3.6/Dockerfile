@@ -1,4 +1,5 @@
-FROM gcr.io/hybrid-qubole/spark:minio
+ARG BASE_CONTAINER=gcr.io/hybrid-qubole/spark:latest
+FROM $BASE_CONTAINER
 
 ENV PATH /usr/local/bin:$PATH
 
