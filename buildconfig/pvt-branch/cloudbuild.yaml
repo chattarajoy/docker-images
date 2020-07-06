@@ -9,7 +9,7 @@ steps:
     - hive-metastore/
   - name: 'gcr.io/cloud-builders/docker'
     id: JupyterPySpark
-    timeout: 1200s
+    timeout: 600s
     args:
       - build
       - -t
@@ -19,7 +19,7 @@ steps:
     id: Jupyter
     waitFor:
       - JupyterPySpark
-    timeout: 1200s
+    timeout: 600s
     args:
       - build
       - --build-arg
