@@ -4,7 +4,6 @@ ENV HADOOP_VERSION 2.9.1
 ENV HIVE_VERSION 2.1.1
 ENV MYSQL_JDBC=https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.18/mysql-connector-java-8.0.18.jar
 ENV POSTGRES_JDBC=https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.9/postgresql-42.2.9.jar
-ENV AWS_JAR=https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/2.9.2/hadoop-aws-2.9.2.jar
 
 RUN yum update -y && \
   yum -y install \
@@ -26,7 +25,9 @@ RUN cd /opt && \
 
 RUN wget $MYSQL_JDBC -P /opt/hive/lib/
 RUN wget $POSTGRES_JDBC -P /opt/hive/lib/
-RUN wget $AWS_JAR -P /opt/hive/lib/
+RUN cd /opt/hive/lib/ && wget https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/2.9.2/hadoop-aws-2.9.2.jar && \
+ wget https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.199/aws-java-sdk-bundle-1.11.199.jar && \
+ wget https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar
 
 COPY conf/mapred-site.xml /opt/hadoop/etc/hadoop/mapred-site.xml
 COPY conf/hive-site.xml.tpl /opt/hadoop/etc/hadoop/hive-site.xml.tpl
