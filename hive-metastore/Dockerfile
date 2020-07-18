@@ -27,7 +27,13 @@ RUN wget $MYSQL_JDBC -P /opt/hive/lib/
 RUN wget $POSTGRES_JDBC -P /opt/hive/lib/
 RUN cd /opt/hive/lib/ && wget https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/2.9.2/hadoop-aws-2.9.2.jar && \
  wget https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.199/aws-java-sdk-bundle-1.11.199.jar && \
- wget https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar
+ wget https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar && \
+ wget https://repo1.maven.org/maven2/org/apache/parquet/parquet-hadoop/1.11.0/parquet-hadoop-1.11.0.jar && \
+ wget https://repo1.maven.org/maven2/commons-pool/commons-pool/1.6/commons-pool-1.6.jar && \
+ wget https://repo1.maven.org/maven2/org/apache/parquet/parquet-column/1.11.0/parquet-column-1.11.0.jar && \
+ wget https://repo1.maven.org/maven2/org/apache/parquet/parquet-format-structures/1.11.0/parquet-format-structures-1.11.0.jar && \
+ wget https://repo1.maven.org/maven2/org/apache/parquet/parquet-jackson/1.11.0/parquet-jackson-1.11.0.jar
+ 
 
 COPY conf/mapred-site.xml /opt/hadoop/etc/hadoop/mapred-site.xml
 COPY conf/hive-site.xml.tpl /opt/hadoop/etc/hadoop/hive-site.xml.tpl
